@@ -1,14 +1,15 @@
-const User = require("../models/user");
 const jwt = require("jwt-simple");
 const config = require("../config");
+const mongoose = require("mongoose");
+
+const User = mongoose.model("user");
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
-exports.signin = function (req, res, next) {
-  console.log();
+exports.signin = function (req, res) {
   res.send({ token: tokenForUser(req.user), user: req.user });
 };
 
