@@ -3,4 +3,7 @@
 .styling {
   margin-left: $progressBarWidth;
   padding: 5rem;
+  .radioContainer {
+    display: flex;
+  }
 }

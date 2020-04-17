@@ -8,18 +8,20 @@ function tokenForUser(user) {
 }
 
 exports.signin = function (req, res, next) {
+  console.log();
   res.send({ token: tokenForUser(req.user), user: req.user });
 };
 
 exports.signup = function (req, res, send) {
+  console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
-  if (!email || !password || firstName || lastName) {
-    return res
-      .status(422)
-      .send({ error: "You must provide firstName, lastName, email and password" });
+  if (!email || !password || !firstName || !lastName) {
+    return res.status(422).send({
+      error: "You must provide firstName, lastName, email and password",
+    });
   }
   User.findOne({ email: email }, function (err, existingUser) {
     if (err) {

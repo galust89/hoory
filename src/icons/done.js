@@ -14,9 +14,9 @@ const done = ({ width = 18, height = 18 }) => {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="Wizard---Step-3" transform="translate(-37.000000, -134.000000)">
           <g id="side">

@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { addAssistantName } from "./../../actions/index";
 
-const Naming = () => {
-  const [asName, setAsName] = useState("");
+const Naming = ({ addAssistantName, name }) => {
+  let history = useHistory();
+  const [asName, setAsName] = useState(name);
 
   const handleNameChange = (e) => {
     setAsName(e.target.value);
+  };
+
+  const handleClick = () => {
+    addAssistantName(asName, () => {
+      history.push("/style");
+    });
   };
 
   return (
@@ -17,11 +26,17 @@ const Naming = () => {
         type="text"
         placeholder="asistant name"
       />
-      <Link to={"/style"}>
-        <button>Next</button>
-      </Link>
+      <button onClick={handleClick}>Next</button>
     </div>
   );
 };
 
-export default Naming;
+const mapStateToProps = (state) => ({
+  name: state.assistant.name,
+});
+
+const mapDispatchToProps = {
+  addAssistantName,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Naming);
