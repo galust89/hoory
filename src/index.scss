@@ -1,0 +1,14 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html, body {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
