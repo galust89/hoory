@@ -3,6 +3,8 @@ import "./index.scss";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addAssistantName } from "./../../actions/index";
+import HooryGrey from "../../icons/hooryGrey";
+import Button from "../../components/Button";
 
 const Naming = ({ addAssistantName, name }) => {
   let history = useHistory();
@@ -20,13 +22,16 @@ const Naming = ({ addAssistantName, name }) => {
 
   return (
     <div className="naming">
+      <HooryGrey />
+      <h1>hoory</h1>
+      <p>Name your assistant</p>
       <input
+        className="nameInput"
         value={asName}
         onChange={handleNameChange}
         type="text"
-        placeholder="asistant name"
       />
-      <button onClick={handleClick}>Next</button>
+      <Button handleButtonClick={handleClick} text="Start" />
     </div>
   );
 };

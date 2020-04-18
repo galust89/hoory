@@ -3,7 +3,11 @@ import "./index.scss";
 import { connect } from "react-redux";
 import { signupUser } from "./../../actions/index";
 import useForm from "../../utils/useForm";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import GoogleInput from "../../components/GoogleInput";
+import BreakLine from "../../components/breackLine";
+import Input from "./../../components/Input/index";
+import Button from "../../components/Button";
 
 const Signup = ({ firstName, lastName, email, signupUser }) => {
   const history = useHistory();
@@ -28,32 +32,49 @@ const Signup = ({ firstName, lastName, email, signupUser }) => {
 
   return (
     <div className="signup">
-      <input
+      <h2>Create your account </h2>
+      <GoogleInput text="Up" />
+      <BreakLine />
+      <div className="inputContainer">
+        <input
+          className="nameInput"
+          type="text"
+          placeholder="First name"
+          value={userfirstName}
+          onChange={setFirstName}
+        />
+        <div className="line"></div>
+        <input
+          className="nameInput"
+          type="text"
+          placeholder="Last name"
+          value={userLastName}
+          onChange={setLastName}
+        />
+      </div>
+      <Input
         type="text"
-        placeholder="first name"
-        value={userfirstName}
-        onChange={setFirstName}
-      />
-      <input
-        type="text"
-        placeholder="last name"
-        value={userLastName}
-        onChange={setLastName}
-      />
-      <input
-        type="text"
-        placeholder="email"
+        placeholder="Email"
         value={userEmail}
-        onChange={setEmail}
+        handleChange={setEmail}
       />
-      <input
-        type="text"
-        placeholder="password"
+      <Input
+        type="password"
+        placeholder="Password"
         value={userPassword}
-        onChange={setPassword}
+        handleChange={setPassword}
       />
-
-      <button onClick={handleButtonClick}>Next</button>
+      <div className="text">
+        By registering an account with us you agree to the PP and T&C
+      </div>
+      <Button
+        className="create-user-button"
+        handleButtonClick={handleButtonClick}
+        text="Create account"
+      />
+      <div className="signinText">
+        Have an account? <Link to="/login">Sign in</Link>
+      </div>
     </div>
   );
 };

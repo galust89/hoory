@@ -1,0 +1,16 @@
+.breakLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  margin: 2rem 0;
+  font-size: 1.3rem;
+  .line {
+    width: 50%;
+    height: 1px;
+    background: lightgrey;
+  }
+  .text-content {
+    margin: 0 2px;
+  }
+}

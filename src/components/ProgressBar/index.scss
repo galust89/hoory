@@ -6,13 +6,21 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: lightcoral;
+  background-color: #6845fb;
   overflow-x: hidden;
-  padding: 2rem 0 0 2rem;
-  
+  padding-top: 3rem;
+
+  .line {
+    width: 70%;
+    height: 1px;
+    background: lightgrey;
+    margin: 3rem 0;
+  }
+
   .step {
     display: flex;
     align-items: center;
@@ -28,7 +36,7 @@
       .emptyCircle {
         height: inherit;
         width: inherit;
-        background: aliceblue;
+        border: 1px solid aliceblue;
         border-radius: 50%;
       }
     }

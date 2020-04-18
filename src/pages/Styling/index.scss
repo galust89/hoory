@@ -2,8 +2,29 @@
 
 .styling {
   margin-left: $progressBarWidth;
-  padding: 5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .radioContainer {
     display: flex;
+  }
+  .iconsWrapper {
+    display: flex;
+    .icon {
+      cursor: pointer;
+    }
+  }
+  h1 {
+    margin-bottom: 2rem;
+  }
+  .stye-next-button {
+    padding: 0.7rem 6rem;
+    color: white;
+    background: #00c67b;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 }

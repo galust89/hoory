@@ -1,8 +1,9 @@
 .radioButton {
   cursor: pointer;
+  margin-bottom: 3rem;
   .outline {
-    width: 3rem;
-    height: 3rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     background: inherit;
     display: flex;
@@ -10,8 +11,8 @@
     align-items: center;
     margin-left: 4px;
     .content {
-      width: 2rem;
-      height: 2rem;
+      width: 5rem;
+      height: 5rem;
       border-radius: 50%;
       visibility: visible;
     }

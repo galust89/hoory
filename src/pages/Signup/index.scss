@@ -2,5 +2,46 @@
 
 .signup {
   margin-left: $progressBarWidth;
-  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .inputContainer {
+    height: 3.5rem;
+    width: 25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    .line {
+      height: 90%;
+      width: 1px;
+      background: lightgrey;
+    }
+  }
+  .nameInput {
+    height: 100%;
+    width: 50%;
+    border: none;
+    border-radius: 3px;
+    background: #f7f7fa;
+    padding: 0 1rem;
+    outline: none;
+  }
+  .create-user-button {
+    width: 25rem;
+    text-align: center;
+  }
+  .text {
+    margin: 1rem 0 2rem 0;
+  }
+  .signinText {
+    font-size: 12px;
+    a {
+      color: black;
+    }
+  }
+  h2 {
+    margin-bottom: 2rem;
+  }
 }

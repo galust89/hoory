@@ -1,0 +1,22 @@
+@import "../../utils/variables";
+
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .create-user-button {
+    width: 25rem;
+    text-align: center;
+  }
+  .signinText {
+    font-size: 12px;
+    a {
+      color: black;
+    }
+  }
+}

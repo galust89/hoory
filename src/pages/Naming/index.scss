@@ -2,5 +2,30 @@
 
 .naming {
   margin-left: $progressBarWidth;
-  padding: 5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .nameInput {
+    width: 25%;
+    text-align: center;
+    background: lightgray;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    height: 4rem;
+    margin-bottom: 3rem;
+    font-size: 17px;
+  }
+  h1 {
+    font-size: 30px;
+    margin-bottom: 1rem;
+    transform: translateY(-3rem);
+  }
+  p {
+    font-size: 17px;
+    margin-bottom: 2rem;
+  }
 }
