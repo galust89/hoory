@@ -2,5 +2,12 @@
 
 .signupSuccess {
   margin-left: $progressBarWidth;
-  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  h1, .text {
+    margin-bottom: 2rem;
+  }
 }

@@ -9,6 +9,23 @@ function tokenForUser(user) {
   return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
+exports.getOne = (req, res) => {
+  const { user } = req;
+  User.findOne({ _id: user._id })
+    .then((user) => {
+      res.json({
+        error: false,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      });
+    })
+    .catch((e) => {
+      console.log(e);
+      res.json({ error: "There is no user by this token", assistants: [] });
+    });
+};
+
 exports.signin = function (req, res) {
   res.send({ token: tokenForUser(req.user), user: req.user });
 };
@@ -33,6 +50,8 @@ exports.signup = function (req, res, send) {
     }
 
     const user = new User({
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: password,
     });

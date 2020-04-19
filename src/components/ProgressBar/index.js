@@ -3,7 +3,7 @@ import "./index.scss";
 import DoneIcon from "./../../icons/done";
 import { connect } from "react-redux";
 import Logo from "../../icons/logo";
-const ProgressBar = ({ name, color, token }) => {
+const ProgressBar = ({ name, color, authorized, creationMode }) => {
   return (
     <div className="progressBar">
       <Logo />
@@ -21,12 +21,14 @@ const ProgressBar = ({ name, color, token }) => {
           </div>
           <div>Select styles</div>
         </div>
-        <div className="step">
-          <div className="iconContainer">
-            {token ? <DoneIcon /> : <div className="emptyCircle" />}
+        {creationMode ? (
+          <div className="step">
+            <div className="iconContainer">
+              {authorized ? <DoneIcon /> : <div className="emptyCircle" />}
+            </div>
+            <div>Create your account</div>
           </div>
-          <div>Create your account</div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
@@ -35,7 +37,8 @@ const ProgressBar = ({ name, color, token }) => {
 const mapStateToProps = (state) => ({
   name: state.assistant.name,
   color: state.assistant.color,
-  token: state.user.token,
+  authorized: state.user.authorized,
+  creationMode: state.user.creationMode,
 });
 
 export default connect(mapStateToProps, null)(ProgressBar);

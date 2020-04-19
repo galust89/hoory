@@ -1,0 +1,23 @@
+.assistant {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  .icons-container {
+    transform: translate(-30%, 10%);
+  }
+  .action-icon {
+    margin-left: auto;
+  }
+  .button {
+    margin-right: 2rem;
+    cursor: pointer;
+    background: #0facf3;
+    padding: 2px 10px;
+    border-radius: 5px;
+    color: black;
+  }
+  .deleteButton {
+    background: red;
+    margin: 0;
+  }
+}

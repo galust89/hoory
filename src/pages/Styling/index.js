@@ -17,23 +17,23 @@ const colors = {
   pink: "#B6419A",
 };
 
-const Styling = ({ color, addAssistantStyle, name }) => {
+const Styling = ({ color, addAssistantStyle, name, gender, token }) => {
   const history = useHistory();
   const [asColor, setAsColor] = useState(color || colors.red);
-  const [asType, setAsType] = useState("male");
+  const [asGender, setAsGender] = useState(gender || "female");
 
   const handleClick = (item) => {
     setAsColor(item);
   };
 
   const handleButtonClick = () => {
-    addAssistantStyle(asColor, () => {
-      history.push("/signup");
+    addAssistantStyle(asColor, gender, name, token, () => {
+      history.push(token ? "/dashboard" : "/signup");
     });
   };
 
   const handleIconClick = (type) => {
-    setAsType(type);
+    setAsGender(type);
   };
 
   return (
@@ -41,10 +41,10 @@ const Styling = ({ color, addAssistantStyle, name }) => {
       <h1>Select {name}'s icon</h1>
       <div className="iconsWrapper">
         <div className="icon" onClick={() => handleIconClick("female")}>
-          <FemaleSelected fill={asColor} showStroke={asType === "female"} />
+          <FemaleSelected fill={asColor} showStroke={asGender === "female"} />
         </div>
         <div className="icon" onClick={() => handleIconClick("male")}>
-          <MaleSelected fill={asColor} showStroke={asType === "male"} />
+          <MaleSelected fill={asColor} showStroke={asGender === "male"} />
         </div>
       </div>
       <h1>Select color scheme</h1>
@@ -65,8 +65,10 @@ const Styling = ({ color, addAssistantStyle, name }) => {
 };
 
 const mapStateToProps = (state) => ({
+  token: state.user.token,
   name: state.assistant.name,
   color: state.assistant.color,
+  gender: state.assistant.gender,
 });
 
 const mapDispatchToProps = {

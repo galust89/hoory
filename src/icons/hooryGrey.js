@@ -60,9 +60,9 @@ const hooryGrey = () => {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="Wizard---Step-1" transform="translate(-895.000000, -288.000000)">
           <g id="Group-2" transform="translate(872.000000, 277.000000)">
@@ -70,13 +70,13 @@ const hooryGrey = () => {
               <g id="Fill-2">
                 <use
                   fill="black"
-                  fill-opacity="1"
+                  fillOpacity="1"
                   filter="url(#filter-2)"
                   xlinkHref="#path-1"
                 ></use>
                 <use
                   fill="#FFFFFF"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   xlinkHref="#path-1"
                 ></use>
               </g>

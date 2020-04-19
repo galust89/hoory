@@ -16,6 +16,7 @@ router.get("/", requireAuth, function (req, res) {
 // Authentication
 router.post("/signin", requireSignin, Authentication.signin);
 router.post("/signup", Authentication.signup);
+router.get("/user", requireAuth, Authentication.getOne);
 
 // Assistant
 router.get("/assistants", requireAuth, Assistant.getMany);

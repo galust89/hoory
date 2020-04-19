@@ -7,7 +7,11 @@ const PrivateRoute = ({ children, path, token }) => {
   if (!token) {
     return <Redirect to={{ pathname: "/" }} />;
   }
-  return <Route path={path}>{children}</Route>;
+  return (
+    <Route path={path} exact>
+      {children}
+    </Route>
+  );
 };
 
 const mapStateToProps = (state) => ({

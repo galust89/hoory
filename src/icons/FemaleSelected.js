@@ -66,7 +66,7 @@ const FemaleSelected = ({ fill, showStroke }) => {
       <g
         id="female-selected-Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
         fillRule="evenodd"
       >
@@ -77,13 +77,13 @@ const FemaleSelected = ({ fill, showStroke }) => {
           <g id="female-selected-Fill-2">
             <use
               fill="black"
-              fill-opacity="1"
+              fillOpacity="1"
               filter="url(#female-selected-filter-2)"
               xlinkHref="#female-selected-path-1"
             ></use>
             <use
-              stroke={showStroke && fill}
-              stroke-width="3"
+              stroke={showStroke ? fill : "none"}
+              strokeWidth="3"
               fill="#FFFFFF"
               fillRule="evenodd"
               xlinkHref="#female-selected-path-1"

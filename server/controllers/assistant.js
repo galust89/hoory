@@ -17,7 +17,7 @@ exports.getMany = (req, res) => {
 exports.create = (req, res) => {
   const {
     user,
-    body: { name, style },
+    body: { name, style, gender },
   } = req;
   if (!name || name.length < 2) {
     return res.json({ error: "Name should be more than 2 characters" });
@@ -27,6 +27,7 @@ exports.create = (req, res) => {
     name,
     style,
     user,
+    gender,
   })
     .then((assistant) => {
       res.json({ error: false, assistant });
@@ -40,7 +41,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
   const {
     user,
-    body: { name, style, _id },
+    body: { name, style, gender, _id },
   } = req;
 
   if (!name || name.length < 2) {
@@ -64,6 +65,7 @@ exports.update = (req, res) => {
 
       assistant.name = name;
       assistant.style = style;
+      assistant.gender = gender;
       return assistant.save();
     })
     .then((assistant) => {

@@ -4,8 +4,11 @@ import Naming from "../../pages/Naming/index";
 import Styling from "../../pages/Styling/index";
 import Signup from "../../pages/Signup/index";
 import SignupSuccess from "../../pages/SignupSuccess";
+import ProtectedRoute from './../../routes/ProtectedRoute';
+import { connect } from 'react-redux';
+import PrivateRoute from './../../routes/PrivateRoute';
 
-const WizardRoutes = () => {
+const WizardRoutes = ({authorized, creationMode}) => {
   return (
     <Switch>
       <Route path="/" exact>
@@ -14,14 +17,18 @@ const WizardRoutes = () => {
       <Route path="/style" exact>
         <Styling />
       </Route>
-      <Route path="/signup" exact>
+      <ProtectedRoute path="/signup" value={!authorized}>
         <Signup />
-      </Route>
-      <Route path="/signupSuccess" exact>
+      </ProtectedRoute>
+      <ProtectedRoute path="/signupSuccess" value={creationMode}>
         <SignupSuccess />
-      </Route>
+      </ProtectedRoute>
     </Switch>
   );
 };
+const mapStateToProps = (state) => ({
+  authorized: state.user.authorized,  
+  creationMode: state.user.creationMode,  
+});
 
-export default WizardRoutes;
+export default connect(mapStateToProps, null)(WizardRoutes);

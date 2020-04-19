@@ -1,9 +1,13 @@
-import { ADD_ASSISTANT_NAME, ADD_ASSISTANT_STYLE } from "./../actions/types";
+import {
+  ADD_ASSISTANT_NAME,
+  ADD_ASSISTANT_STYLE,
+  ADD_NEW_ASSISTANT,
+} from "./../actions/types";
 
 const Initial_State = {
   name: "",
   color: null,
-  iconType: 1,
+  gender: "",
 };
 
 const assistantReducer = (state = Initial_State, action) => {
@@ -14,10 +18,14 @@ const assistantReducer = (state = Initial_State, action) => {
         name: action.name,
       };
     case ADD_ASSISTANT_STYLE:
-      console.log(action.color);
       return {
         ...state,
         color: action.color,
+        gender: action.gender,
+      };
+    case ADD_NEW_ASSISTANT:
+      return {
+        Initial_State,
       };
     default:
       return state;
