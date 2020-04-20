@@ -3,6 +3,10 @@ import {
   CREATE_ASSISTANT,
   DELETE_ASSISTANT,
   SET_USER,
+  GET_ASSISTANTS,
+  ADD_NEW_ASSISTANT,
+  EDIT_ASSISTANT_LOCAL,
+  EDIT_ASSISTANT,
 } from "./../actions/types";
 
 const Initial_State = {
@@ -12,6 +16,7 @@ const Initial_State = {
   authorized: false,
   assistants: [],
   creationMode: true,
+  initialLoad: false,
 };
 
 const userReducer = (state = Initial_State, action) => {
@@ -47,6 +52,30 @@ const userReducer = (state = Initial_State, action) => {
         email,
         authorized: true,
         creationMode: false,
+        initialLoad: true,
+      };
+    case GET_ASSISTANTS:
+      return {
+        ...state,
+        assistants: action.response.assistants,
+      };
+    case ADD_NEW_ASSISTANT:
+      return {
+        ...state,
+        initialLoad: false,
+      };
+    case EDIT_ASSISTANT_LOCAL:
+      return {
+        ...state,
+        initialLoad: false,
+      };
+    case EDIT_ASSISTANT:
+      console.log(action);
+      return {
+        ...state,
+        assistants: state.assistants.map((el) =>
+          el._id === action.assistant._id ? action.assistant : el
+        ),
       };
     default:
       return state;

@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Gravatar from "react-gravatar";
 import "./index.scss";
 import { connect } from "react-redux";
 import Assistant from "../../components/Assistant";
 import Button from "../../components/Button";
-import { deleteAssistant, addNewAssistant } from "./../../actions/index";
+import {
+  deleteAssistant,
+  addNewAssistant,
+  getAssistants,
+  editAsistantLoacl,
+} from "./../../actions/index";
 import { useHistory } from "react-router-dom";
 
-const Dashboard = ({ user, deleteAssistant, addNewAssistant }) => {
+const Dashboard = ({
+  user,
+  deleteAssistant,
+  addNewAssistant,
+  getAssistants,
+  editAsistantLoacl,
+}) => {
   const history = useHistory();
+
+  useEffect(() => {
+    if (user.assistants.length < 1) {
+      getAssistants();
+    }
+  }, []);
+
   const addAssistant = () => {
     addNewAssistant(() => {
+      history.push("/");
+    });
+  };
+
+  const deleteAs = (id) => {
+    console.log(id);
+    deleteAssistant(id);
+  };
+
+  const editAssistant = (assistant) => {
+    editAsistantLoacl(assistant, () => {
       history.push("/");
     });
   };
@@ -21,7 +50,7 @@ const Dashboard = ({ user, deleteAssistant, addNewAssistant }) => {
         <div className="userInfo">
           <Gravatar className="avatar" email={user.email} />
           <div className="name-email">
-            <div className="name">{user.name}</div>
+            <div className="name">{`${user.firstName} ${user.lastName}`}</div>
             <div className="email">{user.email}</div>
           </div>
         </div>
@@ -31,9 +60,9 @@ const Dashboard = ({ user, deleteAssistant, addNewAssistant }) => {
         {user.assistants.map((item) => {
           return (
             <Assistant
-              name={item.name}
-              gender={item.gender}
-              color={item.color}
+              assistant={item}
+              deleteAs={deleteAs}
+              editAssistant={editAssistant}
             />
           );
         })}
@@ -47,6 +76,11 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapDispatchToProps = { deleteAssistant, addNewAssistant };
+const mapDispatchToProps = {
+  deleteAssistant,
+  addNewAssistant,
+  getAssistants,
+  editAsistantLoacl,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

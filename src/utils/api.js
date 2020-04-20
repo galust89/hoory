@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from './getToken';
+import { getToken } from "./getToken";
 const API_BASE = "http://localhost:8000";
 
 function buildURL(endpoint) {
@@ -27,8 +27,8 @@ function post(url, data) {
   return axios.post(buildURL(url), data, buildAuthHeader()).then(parseJSON);
 }
 
-function deleteCall(url) {
-  return axios.delete(buildURL(url), buildAuthHeader()).then(parseJSON);
+function deleteCall(url, data) {
+  return axios.post(buildURL(url), data, buildAuthHeader()).then(parseJSON);
 }
 
 function put(url, data) {
@@ -52,15 +52,15 @@ const api = {
     create: (assistant) => {
       return post(`/assistants`, assistant);
     },
-    delete: (data) => {
-      return deleteCall(`/assistants`, data);
+    delete: (assistantId) => {
+      return deleteCall(`/deleteAssistant`, assistantId);
     },
-    update: (assistantId) => {
-      return put(`/assistants`, { assistantId });
+    update: (assistant) => {
+      return put(`/assistants`, assistant);
     },
-    // get: (assistant) => {
-    //   return get(`/assistant`, assistant);
-    // },
+    get: () => {
+      return get(`/assistants`);
+    },
   },
 };
 

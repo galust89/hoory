@@ -17,7 +17,7 @@ exports.getMany = (req, res) => {
 exports.create = (req, res) => {
   const {
     user,
-    body: { name, style, gender },
+    body: { name, color, gender },
   } = req;
   if (!name || name.length < 2) {
     return res.json({ error: "Name should be more than 2 characters" });
@@ -25,7 +25,7 @@ exports.create = (req, res) => {
 
   Assistant.create({
     name,
-    style,
+    color,
     user,
     gender,
   })
@@ -41,7 +41,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
   const {
     user,
-    body: { name, style, gender, _id },
+    body: { name, color, gender, _id },
   } = req;
 
   if (!name || name.length < 2) {
@@ -64,7 +64,7 @@ exports.update = (req, res) => {
       }
 
       assistant.name = name;
-      assistant.style = style;
+      assistant.color = color;
       assistant.gender = gender;
       return assistant.save();
     })
@@ -86,6 +86,7 @@ exports.delete = (req, res) => {
     user,
     body: { _id },
   } = req;
+  console.log(req.body);
   let objectId = _id;
   try {
     objectId = mongoose.Types.ObjectId(_id);

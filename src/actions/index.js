@@ -6,6 +6,9 @@ import {
   DELETE_ASSISTANT,
   ADD_NEW_ASSISTANT,
   SET_USER,
+  GET_ASSISTANTS,
+  EDIT_ASSISTANT_LOCAL,
+  EDIT_ASSISTANT,
   ERROR,
 } from "./types";
 import api from "./../utils/api";
@@ -15,21 +18,11 @@ export const addAssistantName = (name, callback) => (dispatch) => {
   callback();
 };
 
-export const addAssistantStyle = (
-  color,
-  gender,
-  name,
-  token,
-  callback
-) => async (dispatch) => {
+export const addAssistantStyle = (color, gender, callback) => async (
+  dispatch
+) => {
   dispatch({ type: ADD_ASSISTANT_STYLE, color, gender });
-  console.log(token);
-  if (token) {
-    const assistant = { color, name, gender };
-    createAssistant(assistant, callback);
-  } else {
-    callback();
-  }
+  callback();
 };
 
 export const signupUser = (user, callback) => async (dispatch) => {
@@ -40,18 +33,27 @@ export const signupUser = (user, callback) => async (dispatch) => {
 };
 
 export const createAssistant = (assistant, callback) => async (dispatch) => {
-  console.log("dashboard");
   try {
     const response = await api.assistant.create(assistant);
-    assistant.id = response.assistant._id;
+    assistant._id = response.assistant._id;
     dispatch({ type: CREATE_ASSISTANT, assistant });
   } catch (e) {
     dispatch({ type: ERROR, e });
   }
-
   callback();
 };
+
+export const getAssistants = () => async (dispatch) => {
+  try {
+    const response = await api.assistant.get();
+    dispatch({ type: GET_ASSISTANTS, response });
+  } catch (e) {
+    dispatch({ type: ERROR, e });
+  }
+};
+
 export const deleteAssistant = (assistantId) => async (dispatch) => {
+  console.log(assistantId);
   try {
     await api.assistant.delete({ _id: assistantId });
     dispatch({ type: DELETE_ASSISTANT, assistantId });
@@ -64,8 +66,20 @@ export const addNewAssistant = (callback) => async (dispatch) => {
   dispatch({ type: ADD_NEW_ASSISTANT });
   callback();
 };
+
 export const getUserInfo = () => async (dispatch) => {
   const response = await api.user.getInfo();
   console.log(response);
   dispatch({ type: SET_USER, response });
+};
+
+export const editAsistantLoacl = (assistant, callback) => (dispatch) => {
+  dispatch({ type: EDIT_ASSISTANT_LOCAL, assistant });
+  callback();
+};
+
+export const editAssistant = (assistant, callback) => async (dispatch) => {
+  const response = await api.assistant.update(assistant);
+  dispatch({ type: EDIT_ASSISTANT, assistant: response.assistant });
+  callback();
 };

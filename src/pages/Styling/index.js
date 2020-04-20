@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./index.scss";
 import { connect } from "react-redux";
 import RadioButton from "../../components/RadioButton";
-import { addAssistantStyle } from "./../../actions/index";
+import {
+  addAssistantStyle,
+  createAssistant,
+  editAssistant,
+} from "./../../actions/index";
 import { useHistory } from "react-router-dom";
 import FemaleSelected from "../../icons/FemaleSelected";
 import MaleSelected from "../../icons/MaleSelected";
@@ -17,7 +21,16 @@ const colors = {
   pink: "#B6419A",
 };
 
-const Styling = ({ color, addAssistantStyle, name, gender, token }) => {
+const Styling = ({
+  color,
+  addAssistantStyle,
+  createAssistant,
+  editAssistant,
+  name,
+  gender,
+  authorized,
+  _id,
+}) => {
   const history = useHistory();
   const [asColor, setAsColor] = useState(color || colors.red);
   const [asGender, setAsGender] = useState(gender || "female");
@@ -27,9 +40,21 @@ const Styling = ({ color, addAssistantStyle, name, gender, token }) => {
   };
 
   const handleButtonClick = () => {
-    addAssistantStyle(asColor, gender, name, token, () => {
-      history.push(token ? "/dashboard" : "/signup");
-    });
+    if (authorized && _id) {
+      const assistant = { color: asColor, gender: asGender, name, _id };
+      editAssistant(assistant, () => {
+        history.push("/dashboard");
+      });
+    } else if (authorized) {
+      const assistant = { color: asColor, gender: asGender, name };
+      createAssistant(assistant, () => {
+        history.push("/dashboard");
+      });
+    } else {
+      addAssistantStyle(asColor, gender, () => {
+        history.push("/signup");
+      });
+    }
   };
 
   const handleIconClick = (type) => {
@@ -65,14 +90,17 @@ const Styling = ({ color, addAssistantStyle, name, gender, token }) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.user.token,
+  authorized: state.user.authorized,
   name: state.assistant.name,
   color: state.assistant.color,
   gender: state.assistant.gender,
+  _id: state.assistant._id,
 });
 
 const mapDispatchToProps = {
   addAssistantStyle,
+  createAssistant,
+  editAssistant,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Styling);

@@ -3,7 +3,8 @@ import "./index.scss";
 import Male from "./../../icons/Male";
 import Female from "../../icons/Female";
 
-const Assistant = ({ gender, name, color }) => {
+const Assistant = ({ assistant, deleteAs, editAssistant }) => {
+  const {gender, name, color, _id} = assistant
   return (
     <div className="assistant">
       <div className="icons-container">
@@ -16,9 +17,11 @@ const Assistant = ({ gender, name, color }) => {
 
       <div className="name">{name}</div>
       <div className="action-icon">
-        <div className="button">Edit</div>
+        <div onClick={()=>editAssistant(assistant)} className="button">Edit</div>
       </div>
-      <div className="button deleteButton">Delete</div>
+      <div onClick={() => deleteAs(_id)} className="button deleteButton">
+        Delete
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ router.get("/user", requireAuth, Authentication.getOne);
 // Assistant
 router.get("/assistants", requireAuth, Assistant.getMany);
 router.post("/assistants", requireAuth, Assistant.create);
-router.patch("/assistants", requireAuth, Assistant.update);
-router.delete("/assistants", requireAuth, Assistant.delete);
+router.put("/assistants", requireAuth, Assistant.update);
+router.post("/deleteAssistant", requireAuth, Assistant.delete);
 
 module.exports = router;
