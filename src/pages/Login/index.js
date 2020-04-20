@@ -6,11 +6,20 @@ import Input from "../../components/Input";
 import useForm from "./../../utils/useForm";
 import Button from "./../../components/Button/index";
 import { Link } from "react-router-dom";
-const Login = () => {
+import { connect } from "react-redux";
+import { login } from "../../actions";
+import { useHistory } from "react-router-dom";
+
+const Login = ({ login }) => {
   const [userEmail, setEmail] = useForm("");
   const [userPassword, setPassword] = useForm("");
+  const history = useHistory();
 
-  const handleButtonClick = () => {};
+  const handleButtonClick = () => {
+    login({ email: userEmail, password: userPassword }, () => {
+      history.push("/dashboard");
+    });
+  };
 
   return (
     <div className="login">
@@ -32,7 +41,7 @@ const Login = () => {
       <Button
         className="create-user-button"
         handleButtonClick={handleButtonClick}
-        text="Sign up"
+        text="Sign In"
       />
       <div className="signinText">
         Don't have an account? <Link to="/signup">Sign up</Link>
@@ -41,4 +50,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = {
+  login,
+};
+
+export default connect(null, mapDispatchToProps)(Login);

@@ -9,6 +9,7 @@ import {
   addNewAssistant,
   getAssistants,
   editAsistantLoacl,
+  logout,
 } from "./../../actions/index";
 import { useHistory } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const Dashboard = ({
   addNewAssistant,
   getAssistants,
   editAsistantLoacl,
+  logout,
 }) => {
   const history = useHistory();
 
@@ -54,7 +56,9 @@ const Dashboard = ({
             <div className="email">{user.email}</div>
           </div>
         </div>
-        <div className="logout">Logout</div>
+        <div onClick={logout} className="logout">
+          Logout
+        </div>
       </div>
       <div className="content">
         {user.assistants.map((item) => {
@@ -81,6 +85,7 @@ const mapDispatchToProps = {
   addNewAssistant,
   getAssistants,
   editAsistantLoacl,
+  logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -2,9 +2,8 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const PrivateRoute = ({ children, path, token }) => {
-  console.log(token);
-  if (!token) {
+const PrivateRoute = ({ children, path, authorized }) => {
+  if (!authorized) {
     return <Redirect to={{ pathname: "/" }} />;
   }
   return (
@@ -15,7 +14,7 @@ const PrivateRoute = ({ children, path, token }) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.user.token,
+  authorized: state.user.authorized,
 });
 
 export default connect(mapStateToProps, null)(PrivateRoute);

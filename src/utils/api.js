@@ -46,6 +46,9 @@ const api = {
     getInfo: () => {
       return get(`/user`);
     },
+    login: (data) => {
+      return post(`/signin`, data);
+    },
   },
 
   assistant: {

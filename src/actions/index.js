@@ -9,7 +9,9 @@ import {
   GET_ASSISTANTS,
   EDIT_ASSISTANT_LOCAL,
   EDIT_ASSISTANT,
+  LOGOUT_USER,
   ERROR,
+  SIGNIN_USER,
 } from "./types";
 import api from "./../utils/api";
 
@@ -70,7 +72,7 @@ export const addNewAssistant = (callback) => async (dispatch) => {
 export const getUserInfo = () => async (dispatch) => {
   const response = await api.user.getInfo();
   console.log(response);
-  dispatch({ type: SET_USER, response });
+  dispatch({ type: SET_USER, user: response });
 };
 
 export const editAsistantLoacl = (assistant, callback) => (dispatch) => {
@@ -81,5 +83,17 @@ export const editAsistantLoacl = (assistant, callback) => (dispatch) => {
 export const editAssistant = (assistant, callback) => async (dispatch) => {
   const response = await api.assistant.update(assistant);
   dispatch({ type: EDIT_ASSISTANT, assistant: response.assistant });
+  callback();
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({ type: LOGOUT_USER });
+};
+
+export const login = (emailPass, callback) => async (dispatch) => {
+  const { token, user } = await api.user.login(emailPass);
+  localStorage.setItem("token", token);
+  dispatch({ type: SET_USER, user });
   callback();
 };

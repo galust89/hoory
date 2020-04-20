@@ -4,6 +4,7 @@ import DoneIcon from "./../../icons/done";
 import { connect } from "react-redux";
 import Logo from "../../icons/logo";
 const ProgressBar = ({ name, color, authorized, creationMode }) => {
+  console.log(creationMode);
   return (
     <div className="progressBar">
       <Logo />

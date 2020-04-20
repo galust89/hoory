@@ -7,6 +7,7 @@ import {
   ADD_NEW_ASSISTANT,
   EDIT_ASSISTANT_LOCAL,
   EDIT_ASSISTANT,
+  LOGOUT_USER,
 } from "./../actions/types";
 
 const Initial_State = {
@@ -44,7 +45,7 @@ const userReducer = (state = Initial_State, action) => {
         ),
       };
     case SET_USER:
-      const { firstName, lastName, email } = action.response;
+      const { firstName, lastName, email } = action.user;
       return {
         ...state,
         firstName,
@@ -77,6 +78,9 @@ const userReducer = (state = Initial_State, action) => {
           el._id === action.assistant._id ? action.assistant : el
         ),
       };
+    case LOGOUT_USER:
+      return Initial_State;
+
     default:
       return state;
   }
