@@ -9,11 +9,11 @@ import BreakLine from "../../components/breackLine";
 import Input from "./../../components/Input/index";
 import Button from "../../components/Button";
 
-const Signup = ({ firstName, lastName, email, signupUser }) => {
+const Signup = ({ signupUser }) => {
   const history = useHistory();
-  const [userfirstName, setFirstName] = useForm(firstName);
-  const [userLastName, setLastName] = useForm(lastName);
-  const [userEmail, setEmail] = useForm(email);
+  const [userfirstName, setFirstName] = useForm("");
+  const [userLastName, setLastName] = useForm("");
+  const [userEmail, setEmail] = useForm("");
   const [userPassword, setPassword] = useForm("");
 
   const handleButtonClick = () => {
@@ -79,11 +79,6 @@ const Signup = ({ firstName, lastName, email, signupUser }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  firstName: state.user.firstName,
-  lastName: state.user.lastName,
-});
-
 const mapDispatchToProps = { signupUser };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);

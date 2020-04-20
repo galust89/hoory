@@ -55,7 +55,6 @@ export const getAssistants = () => async (dispatch) => {
 };
 
 export const deleteAssistant = (assistantId) => async (dispatch) => {
-  console.log(assistantId);
   try {
     await api.assistant.delete({ _id: assistantId });
     dispatch({ type: DELETE_ASSISTANT, assistantId });
@@ -71,7 +70,6 @@ export const addNewAssistant = (callback) => async (dispatch) => {
 
 export const getUserInfo = () => async (dispatch) => {
   const response = await api.user.getInfo();
-  console.log(response);
   dispatch({ type: SET_USER, user: response });
 };
 

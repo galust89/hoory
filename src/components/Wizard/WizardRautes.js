@@ -7,19 +7,26 @@ import SignupSuccess from "../../pages/SignupSuccess";
 import ProtectedRoute from "./../../routes/ProtectedRoute";
 import { connect } from "react-redux";
 
-const WizardRoutes = ({ authorized, creationMode, initialLoad }) => {
+const WizardRoutes = ({
+  authorized,
+  creationMode,
+  initialLoad,
+  name,
+  color,
+  gender,
+}) => {
   return (
     <Switch>
       <ProtectedRoute
         path="/"
         exact
-        redirectCretirea={initialLoad}
+        redirectCretirea={[initialLoad]}
         redirectRoute="/dashboard"
       >
         <Naming />
       </ProtectedRoute>
       <ProtectedRoute
-        redirectCretirea={initialLoad}
+        redirectCretirea={[initialLoad, !name]}
         redirectRoute="/dashboard"
         path="/style"
         exact
@@ -28,7 +35,7 @@ const WizardRoutes = ({ authorized, creationMode, initialLoad }) => {
       </ProtectedRoute>
       <ProtectedRoute
         path="/signup"
-        redirectCretirea={authorized}
+        redirectCretirea={[authorized, !name, !color, !gender]}
         redirectRoute="/"
         exact
       >
@@ -36,7 +43,7 @@ const WizardRoutes = ({ authorized, creationMode, initialLoad }) => {
       </ProtectedRoute>
       <ProtectedRoute
         path="/signupSuccess"
-        redirectCretirea={!creationMode}
+        redirectCretirea={[!creationMode]}
         redirectRoute="/"
         exact
       >
@@ -46,6 +53,9 @@ const WizardRoutes = ({ authorized, creationMode, initialLoad }) => {
   );
 };
 const mapStateToProps = (state) => ({
+  name: state.assistant.name,
+  color: state.assistant.name,
+  gender: state.assistant.gender,
   authorized: state.user.authorized,
   creationMode: state.user.creationMode,
   initialLoad: state.user.initialLoad,

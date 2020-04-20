@@ -31,7 +31,6 @@ exports.signin = function (req, res) {
 };
 
 exports.signup = function (req, res, send) {
-  console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
   const firstName = req.body.firstName;

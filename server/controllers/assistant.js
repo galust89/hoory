@@ -86,7 +86,6 @@ exports.delete = (req, res) => {
     user,
     body: { _id },
   } = req;
-  console.log(req.body);
   let objectId = _id;
   try {
     objectId = mongoose.Types.ObjectId(_id);

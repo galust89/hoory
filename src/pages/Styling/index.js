@@ -51,7 +51,7 @@ const Styling = ({
         history.push("/dashboard");
       });
     } else {
-      addAssistantStyle(asColor, gender, () => {
+      addAssistantStyle(asColor, asGender, () => {
         history.push("/signup");
       });
     }

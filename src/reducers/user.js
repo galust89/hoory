@@ -71,7 +71,6 @@ const userReducer = (state = Initial_State, action) => {
         initialLoad: false,
       };
     case EDIT_ASSISTANT:
-      console.log(action);
       return {
         ...state,
         assistants: state.assistants.map((el) =>

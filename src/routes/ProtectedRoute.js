@@ -7,9 +7,10 @@ const ProtectedRoute = ({
   redirectCretirea,
   redirectRoute,
 }) => {
-  console.log(redirectCretirea);
-  if (redirectCretirea) {
-    return <Redirect to={{ pathname: redirectRoute }} />;
+  for (let criteria of redirectCretirea) {
+    if (criteria) {
+      return <Redirect to={{ pathname: redirectRoute }} />;
+    }
   }
   return (
     <Route path={path} exact>

@@ -29,7 +29,6 @@ const assistantReducer = (state = Initial_State, action) => {
       return Initial_State;
 
     case EDIT_ASSISTANT_LOCAL:
-      console.log(action);
       const { name, color, gender, _id } = action.assistant;
       return {
         name,

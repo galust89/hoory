@@ -36,7 +36,6 @@ const Dashboard = ({
   };
 
   const deleteAs = (id) => {
-    console.log(id);
     deleteAssistant(id);
   };
 
@@ -64,6 +63,7 @@ const Dashboard = ({
         {user.assistants.map((item) => {
           return (
             <Assistant
+              key={item._id}
               assistant={item}
               deleteAs={deleteAs}
               editAssistant={editAssistant}
