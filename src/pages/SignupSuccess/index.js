@@ -4,11 +4,11 @@ import { useHistory } from "react-router-dom";
 import "./index.scss";
 import Button from "./../../components/Button/index";
 import { createAssistant } from "../../actions";
-import Male from "./../../icons/Male";
-import Female from "../../icons/Female";
+import iconType from "../../constants";
 
 const SignupSuccess = ({ name, gender, color, createAssistant }) => {
   const history = useHistory();
+  const Icon = iconType[gender];
 
   const handleButtonClick = () => {
     createAssistant({ name, gender, color }, () => {
@@ -17,13 +17,7 @@ const SignupSuccess = ({ name, gender, color, createAssistant }) => {
   };
   return (
     <div className="signupSuccess">
-      <>
-        {gender === "male" ? (
-          <Male width={140} height={140} fill={color} />
-        ) : (
-          <Female width={140} height={140} fill={color} />
-        )}
-      </>
+      <Icon width={140} height={140} fill={color} />
       <h1>Fantastico</h1>
       <h3>
         You have successfully setup the Hoory widget on your website! Procees to

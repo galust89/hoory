@@ -1,11 +1,8 @@
 @import "../../utils/variables";
 
 .login {
+  @extend .page;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   .logo {
     margin-bottom: 5rem;
   }

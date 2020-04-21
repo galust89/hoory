@@ -32,7 +32,7 @@ const Styling = ({
   _id,
 }) => {
   const history = useHistory();
-  const [asColor, setAsColor] = useState(color || colors.red);
+  const [asColor, setAsColor] = useState(color || colors.blueDarck);
   const [asGender, setAsGender] = useState(gender || "female");
 
   const handleClick = (item) => {

@@ -1,13 +1,11 @@
 @import "../../utils/variables";
 
 .signupSuccess {
+  @extend .page;
   margin-left: $progressBarWidth;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  h1, .text {
+  h1,
+  .text {
     margin-bottom: 2rem;
   }
 }

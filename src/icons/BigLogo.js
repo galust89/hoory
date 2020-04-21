@@ -9,7 +9,6 @@ const BigLogo = ({ width = 250, height = 73, className }) => {
       viewBox="0 0 250 73"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsHlink="http://www.w3.org/1999/xlink"
     >
       <title>0919CE5D-D4F3-43F8-9D3B-4ABD4000D92F</title>
       <desc>Created with sketchtool.</desc>
@@ -149,7 +148,7 @@ const BigLogo = ({ width = 250, height = 73, className }) => {
               <path
                 d="M55.374533,26.7374025 L55.374533,23.212201 L49.1814464,23.212201 C48.2124438,23.212201 47.4267983,24.0013176 47.4267983,24.9750019 C47.4267983,25.9482858 48.2124438,26.7374025 49.1814464,26.7374025 L55.374533,26.7374025 Z"
                 id="Fill-29"
-                fill-opacity="0.15"
+                fillOpacity="0.15"
                 fill="#000000"
               ></path>
               <path

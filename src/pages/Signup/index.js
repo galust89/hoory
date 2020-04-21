@@ -1,13 +1,13 @@
 import React from "react";
-import "./index.scss";
 import { connect } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import { signupUser } from "./../../actions/index";
 import useForm from "../../utils/useForm";
-import { useHistory, Link } from "react-router-dom";
 import GoogleInput from "../../components/GoogleInput";
 import BreakLine from "../../components/breackLine";
 import Input from "./../../components/Input/index";
 import Button from "../../components/Button";
+import "./index.scss";
 
 const Signup = ({ signupUser }) => {
   const history = useHistory();

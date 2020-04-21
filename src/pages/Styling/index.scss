@@ -1,12 +1,9 @@
 @import "../../utils/variables";
 
 .styling {
+  @extend .page;
   margin-left: $progressBarWidth;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   .radioContainer {
     display: flex;
   }

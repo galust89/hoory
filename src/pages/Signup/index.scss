@@ -1,11 +1,8 @@
 @import "../../utils/variables";
 
 .signup {
+  @extend .page;
   margin-left: $progressBarWidth;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   .inputContainer {
     height: 3.5rem;
