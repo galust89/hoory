@@ -1,5 +1,5 @@
 import Male from "./icons/Male";
-import Female from "./icons/Female";
+import Female from "./icons/female";
 
 const iconType = {
   male: Male,
