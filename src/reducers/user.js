@@ -56,6 +56,7 @@ const userReducer = (state = Initial_State, action) => {
         initialLoad: true,
       };
     case GET_ASSISTANTS:
+      console.log(action.response.assistants);
       return {
         ...state,
         assistants: action.response.assistants,

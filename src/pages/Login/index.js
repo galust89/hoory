@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../actions";
 import { useHistory } from "react-router-dom";
+import BigLogo from "./../../icons/BigLogo";
 
 const Login = ({ login }) => {
   const [userEmail, setEmail] = useForm("");
@@ -23,6 +24,7 @@ const Login = ({ login }) => {
 
   return (
     <div className="login">
+      <BigLogo className="logo" />
       <h2>Sign in to your accout </h2>
       <GoogleInput text="In" />
       <BreakLine />

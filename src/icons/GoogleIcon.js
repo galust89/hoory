@@ -1,10 +1,10 @@
 import React from "react";
 
-const GoogleIcon = () => {
+const GoogleIcon = ({ width = 25, height = 25 }) => {
   return (
     <svg
-      width="25px"
-      height="25px"
+      width={width}
+      height={height}
       viewBox="0 0 25 25"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

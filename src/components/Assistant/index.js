@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import Male from "./../../icons/Male";
 import Female from "../../icons/Female";
+import { GoKebabVertical, GoPencil, GoTrashcan } from "react-icons/go";
 
 const Assistant = ({ assistant, deleteAs, editAssistant }) => {
-  const {gender, name, color, _id} = assistant
+  const [showOptions, setShowOptions] = useState(false);
+  const { gender, name, color, _id } = assistant;
   return (
     <div className="assistant">
       <div className="icons-container">
@@ -17,10 +19,26 @@ const Assistant = ({ assistant, deleteAs, editAssistant }) => {
 
       <div className="name">{name}</div>
       <div className="action-icon">
-        <div onClick={()=>editAssistant(assistant)} className="button">Edit</div>
-      </div>
-      <div onClick={() => deleteAs(_id)} className="button deleteButton">
-        Delete
+        {showOptions ? (
+          <>
+            <div
+              className="icon-container"
+              onClick={() => editAssistant(assistant)}
+            >
+              <GoPencil className="edit" size={15} />
+            </div>
+            <div onClick={() => deleteAs(_id)} className="icon-container">
+              <GoTrashcan className="remove" size={15} color="red" />
+            </div>
+          </>
+        ) : null}
+
+        <div
+          onClick={() => setShowOptions(!showOptions)}
+          className="icon-container"
+        >
+          <GoKebabVertical className="menu" size={15} />
+        </div>
       </div>
     </div>
   );

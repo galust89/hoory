@@ -2,11 +2,29 @@
   display: flex;
   align-items: center;
   padding: 0 1rem;
+  background: #f7f6fb;
+  margin-bottom: 2px;
+  border-radius: 3px;
+  .name {
+    transform: translateX(-2.5rem);
+  }
   .icons-container {
     transform: translate(-30%, 10%);
   }
   .action-icon {
     margin-left: auto;
+    display: flex;
+
+    .icon-container {
+      height: 3rem;
+      width: 3rem;
+      text-align: center;
+      background: white;
+      border-radius: 50%;
+      padding: 7px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
   }
   .button {
     margin-right: 2rem;
@@ -17,7 +35,7 @@
     color: black;
   }
   .deleteButton {
-    background: red;
+    background: #de2125;
     margin: 0;
   }
 }

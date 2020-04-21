@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Gravatar from "react-gravatar";
 import "./index.scss";
 import { connect } from "react-redux";
 import Assistant from "../../components/Assistant";
-import Button from "../../components/Button";
 import {
   deleteAssistant,
   addNewAssistant,
@@ -12,6 +11,10 @@ import {
   logout,
 } from "./../../actions/index";
 import { useHistory } from "react-router-dom";
+import Button from "./../../components/Button/index";
+import Shape from "./../../icons/Shape";
+import Input from "./../../components/Input/index";
+import { AiOutlineFileSearch } from "react-icons/ai";
 
 const Dashboard = ({
   user,
@@ -22,12 +25,20 @@ const Dashboard = ({
   logout,
 }) => {
   const history = useHistory();
+  const [filterValue, setFilterValue] = useState("");
+  const [assistants, setAssistants] = useState(user.assistants);
 
   useEffect(() => {
     if (user.assistants.length < 1) {
       getAssistants();
     }
   }, []);
+
+  useEffect(() => {
+    if (user.assistants.length > 0) {
+      setAssistants(user.assistants);
+    }
+  }, [user]);
 
   const addAssistant = () => {
     addNewAssistant(() => {
@@ -45,6 +56,12 @@ const Dashboard = ({
     });
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setFilterValue(value);
+    setAssistants(user.assistants.filter((item) => item.name.includes(value)));
+  };
+
   return (
     <div className="dashboard">
       <div className="header">
@@ -55,12 +72,23 @@ const Dashboard = ({
             <div className="email">{user.email}</div>
           </div>
         </div>
-        <div onClick={logout} className="logout">
-          Logout
-        </div>
+        <Button handleButtonClick={logout} text="Logout" className="logout">
+          <Shape className="shape-icon" />
+        </Button>
       </div>
       <div className="content">
-        {user.assistants.map((item) => {
+        <div className="search-container">
+          <Input
+            value={filterValue}
+            handleChange={handleInputChange}
+            className="search-input"
+            type="text"
+            placeholder="Search"
+          />
+          <AiOutlineFileSearch size={20} className="search-icon" />
+        </div>
+
+        {assistants.map((item) => {
           return (
             <Assistant
               key={item._id}
@@ -70,7 +98,9 @@ const Dashboard = ({
             />
           );
         })}
-        <Button text="add new" handleButtonClick={addAssistant} />
+        <div onClick={addAssistant} className="add-new-btn">
+          + Add new Workspace
+        </div>
       </div>
     </div>
   );
