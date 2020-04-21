@@ -9,6 +9,5 @@ export const GET_ASSISTANTS = "GET_ASSISTANTS";
 export const EDIT_ASSISTANT_LOCAL = "EDIT_ASSISTANT_LOCAL";
 export const EDIT_ASSISTANT = "EDIT_ASSISTANT";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const SIGNIN_USER = "SIGNIN_USER";
 
 export const ERROR = "ERROR";

@@ -11,7 +11,6 @@ import {
   EDIT_ASSISTANT,
   LOGOUT_USER,
   ERROR,
-  SIGNIN_USER,
 } from "./types";
 import api from "./../utils/api";
 
